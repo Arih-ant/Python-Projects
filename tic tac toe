@@ -1,0 +1,130 @@
+def game():
+    row1 = [" "," "," "]
+    dash1 = "- - -"
+    row2  = [" "," "," "]
+    dash2 = "- - -"
+    row3  = [" "," "," "]
+
+    def new_game():
+        user_input = input("do you want to play again?(answer in yes or no) : ").lower()
+        while user_input != "yes" and user_input != "no" :
+            user_input = input("I do not understand , please answer in yes or no only : ")
+        if user_input == "no":
+            print("Okay! Thanks for playing.")
+
+        elif user_input == "yes":
+
+            game()
+    
+    def tic_tac_toe():
+
+        print("Welcome to the TIC TAC TOE game!")
+        print("Please enter your names")
+        user1 = input("user1: ")
+        user2 = input("user2: ")
+        print(f"Hello {user1} and  {user2}. Let us begin to see who's the king of Tic Tac Toe")
+        
+        def structure():
+            print("           ")
+            print("|".join(row1)) 
+            print(dash1)
+            print("|".join(row2))
+            print(dash2)
+            print("|".join(row3))
+            print("           ")
+        
+        A = ['X','X','X']
+        B = ['O','O','O']
+       
+        def winner():
+            if set(row1)== {'X'} or set(row2)== {'X'} or set(row3)== {'X'}  or (row1[0]== 'X' and row2[1]== 'X' and row3[2]=='X') or  (row1[2]== 'X' and row2[1]== 'X' and row3[0]=='X') or [row1[0],row2[0],row3[0]]==A or [row1[1],row2[1],row3[1]]==A or [row1[1],row2[1],row3[1]]==A :
+                print(f"{user1} wins, CONGRATULATIONS FOR BEING THE KING OF TIC TAC TOE")
+            elif set(row1)== {'O'} or set(row2)== {'O'} or set(row3)== {'O'}  or (row1[0]== 'O' and row2[1]== 'O' and row3[2]=='O') or  (row1[2]== 'O' and row2[1]== 'O' and row3[0]=='O') or [row1[0],row2[0],row3[0]]==B or [row1[1],row2[1],row3[1]]==B or [row1[1],row2[1],row3[1]]==B:
+                print(f"{user2} wins, CONGRATULATIONS FOR BEING THE KING OF TIC TAC TOE")
+            elif (" " not in row1 and " " not in row2 and " " not in row3 ) :
+                print("IT'S A DRAW!")
+            else:
+                pass
+       
+        def new_assignmentO():
+            print("The spot is already taken ,please choose another spot")
+            o_input()
+
+        def o_input():
+            print(f"it is {user2}'s turn , please select the rows(1-3) and column (1-3) to print O on it")
+            O_ROW = input(f"{user2}'s input row: ")
+            while O_ROW.isdigit()== False or O_ROW not in ['1','2','3']:
+                O_ROW=input("please Enter a digit between(1-3): ")
+            O_index = (input(f"{user2}'s input column: "))
+            while O_index.isdigit()== False or O_index not in ['1','2','3']:
+                O_index=(input("please Enter a digit between(1-3): "))
+            O_column = int(O_index) - 1
+            if int(O_ROW) == 1 :
+                if row1[O_column]== ' ':
+                    row1[O_column]= 'O'
+                else:
+                    new_assignmentO()
+            elif int(O_ROW) == 2:
+                if row2[O_column]== ' ':
+                    row2[O_column] = 'O'
+                else:
+                    new_assignmentO()
+            elif int(O_ROW) == 3:
+                if row3[O_column] == ' ':
+                    row3[O_column] = 'O'
+                else:
+                    new_assignmentO()
+            structure()
+
+        def new_assignmentX():
+            print("The spot is already taken ,please choose another spot")
+            x_input()
+
+        def x_input():
+            print(f"it is {user1}'s turn , please select the rows(1-3) and column (1-3) to print X on it")
+            X_ROW = input(f"{user1}'s input row: ")
+            while X_ROW.isdigit()== False or X_ROW not in ['1','2','3']:
+                X_ROW=input("please Enter a digit between(1-3): ")
+            X_index = (input(f"{user1}'s input column: "))
+            while X_index.isdigit()== False or X_index not in ['1','2','3']:
+                X_index=(input("please Enter a digit between(1-3): "))
+            X_column = int(X_index) - 1
+            if int(X_ROW) == 1 :
+                if row1[X_column]== ' ':
+                    row1[X_column]= 'X'
+                else:
+                    new_assignmentX()
+            elif int(X_ROW) == 2:
+                if row2[X_column]== ' ':
+                    row2[X_column] = 'X'
+                else:
+                    new_assignmentX()
+            elif int(X_ROW) == 3:
+                if row3[X_column] == ' ':
+                    row3[X_column] = 'X'
+                else:
+                    new_assignmentX()
+            structure()
+
+        def gameplay():
+            if (row1 == A or row2 == A or row3 == A or [row1[0],row2[1],row3[2]] == A or [row1[2],row2[1],row3[0]] == A or [row1[0],row2[0],row3[0]]==A or [row1[1],row2[1],row3[1]]==A or [row1[1],row2[1],row3[1]]==A ) or  (row1 == B or row2 == B or row3 == B or [row1[0],row2[1],row3[2]] == B or [row1[2],row2[1],row3[0]] == B or [row1[0],row2[0],row3[0]]==B or [row1[1],row2[1],row3[1]]==B or [row1[1],row2[1],row3[1]]==B) or (" " not in row1 and " " not in row2 and " " not in row3 ):                                                                                                                                                                                                                                                
+                winner()
+            else:
+                x_input()
+                gameplay1()
+        def gameplay1():
+            if (row1 == A or row2 == A or row3 == A or [row1[0],row2[1],row3[2]] == A or [row1[2],row2[1],row3[0]] == A or [row1[0],row2[0],row3[0]]==A or [row1[1],row2[1],row3[1]]==A or [row1[1],row2[1],row3[1]]==A ) or  (row1 == B or row2 == B or row3 == B or [row1[0],row2[1],row3[2]] == B or [row1[2],row2[1],row3[0]] == B or [row1[0],row2[0],row3[0]]==B or [row1[1],row2[1],row3[1]]==B or [row1[1],row2[1],row3[1]]==B) or (" " not in row1 and " " not in row2 and " " not in row3 ):                                                                                                                                                                                                                                                       
+                winner()
+            else:
+                o_input()
+                gameplay()
+
+        def final_game():
+            structure()
+            gameplay()
+            new_game()
+       
+        final_game()
+    
+    tic_tac_toe()
+game()
